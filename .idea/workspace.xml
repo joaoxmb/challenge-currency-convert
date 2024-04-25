@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="859b3a07-7d9f-48d8-800e-e2b9053e1654" name="Changes" comment="Feat: Added Gson Dependencie">
+    <list default="true" id="859b3a07-7d9f-48d8-800e-e2b9053e1654" name="Changes" comment="Feat: Built question function">
+      <change afterPath="$PROJECT_DIR$/src/CurrencyResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserOptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/challenge-currency-convert.iml" beforeDir="false" afterPath="$PROJECT_DIR$/challenge-currency-convert.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FetchData.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +46,8 @@
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RunManager" selected="Application.Main">
@@ -96,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714062034600</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Feat: Built question function">
+      <option name="closed" value="true" />
+      <created>1714071914799</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714071914799</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,6 +122,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Feat: Created simple request" />
     <MESSAGE value="Feat: Added Gson Dependencie" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Added Gson Dependencie" />
+    <MESSAGE value="Feat: Built question function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Built question function" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
