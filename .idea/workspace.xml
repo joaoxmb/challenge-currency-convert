@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="859b3a07-7d9f-48d8-800e-e2b9053e1654" name="Changes" comment="Feat: Built question function">
-      <change afterPath="$PROJECT_DIR$/src/CurrencyResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UserOptions.java" afterDir="false" />
+    <list default="true" id="859b3a07-7d9f-48d8-800e-e2b9053e1654" name="Changes" comment="Feat: refactoring">
+      <change afterPath="$PROJECT_DIR$/src/MenuSelect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,9 +28,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2fb9v17graSVAVIYMBENlPQkwqC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -42,6 +42,7 @@
     "Application.FetchData.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
@@ -105,7 +106,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714071914799</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Feat: functional application">
+      <option name="closed" value="true" />
+      <created>1714083857164</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714083857164</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Feat: refactoring">
+      <option name="closed" value="true" />
+      <created>1714089731814</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714089731814</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,7 +140,9 @@
     <MESSAGE value="Feat: Created simple request" />
     <MESSAGE value="Feat: Added Gson Dependencie" />
     <MESSAGE value="Feat: Built question function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Built question function" />
+    <MESSAGE value="Feat: functional application" />
+    <MESSAGE value="Feat: refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -134,5 +153,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/challenge_currency_convert$Main.ic" NAME="Main Coverage Results" MODIFIED="1714088011473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

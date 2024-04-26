@@ -1,103 +1,103 @@
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Currency;
 import java.util.Scanner;
 
 public class Main {
+    static Config config;
 
-    public static void main(String[] args) throws IOException, InterruptedException, NoSuchFieldException, IllegalAccessException {
-        UserOptions selectedOptions = askConfig();
+    public static void main(String[] args) {
+        askConfig();
+        askCommand();
+    }
+
+    public static void askCommand() {
+        Scanner scanner = new Scanner(System.in);
+
+        convertMessage();
 
         while (true) {
-            double amount = askAmount(selectedOptions.fromCurrency.name, selectedOptions.toCurrency.name);
+            System.out.print("/ ");
+            String choices = scanner.nextLine();
 
-            if (amount <= 0) {
-                break;
+
+            switch (choices) {
+                case "config":
+                    askConfig();
+                    convertMessage();
+                    break;
+                case "invert":
+                    Config.Currency currentFrom = config.fromCurrency;
+                    config.fromCurrency = config.toCurrency;
+                    config.toCurrency = currentFrom;
+
+                    convertMessage();
+                    break;
+                default:
+                    try {
+                        // Tentamos transformar string em double
+                        choices = choices.replaceAll("[^0-9.]", "");
+                        double amount = Double.parseDouble(choices);
+
+                        if (amount > 0) {
+                            double calculated = Api.calc(config.fromCurrency.code, config.toCurrency.code, amount);
+                            System.out.printf("""
+                                %s %.2f = %s %.2f
+                                
+                                """, config.fromCurrency.symbol, amount, config.toCurrency.symbol, calculated);
+                            break;
+                        }
+
+                        System.out.println("""
+                            
+                            0 não é um valor válido para se fazer o calculo de cotação:
+                            """);
+
+                    } catch (NumberFormatException e) {
+                        // Caso o entrada passada seja inválida
+                        System.out.println("""
+                            
+                            Esse comando não exites, tente novamente:
+                            """);
+                    }
             }
-            double calculated = calcRates(selectedOptions, amount);
-            System.out.println(calculated);
+
         }
-
     }
 
-    public static double calcRates(UserOptions options, double amount) throws IOException, InterruptedException {
-        Gson gson = new Gson();
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://v6.exchangerate-api.com/v6/2df7a50257c7ddb5ce0fb4da/pair/" + options.fromCurrency.code + "/" + options.toCurrency.code + "/" + amount))
-                .build();
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-        String json = response.body();
-        CalcResponse result = gson.fromJson(json, CalcResponse.class);
+    public static void askConfig() {
+        Config currentConfig = new Config();
 
-        return result.conversion_result;
-    }
-
-    class CalcResponse {
-        String result;
-        double conversion_result;
-    }
-
-    public static UserOptions askConfig() {
-        Scanner askFor = new Scanner(System.in);
-        UserOptions selectedOptions = new UserOptions();
-
-        // Primeira pergunta
-        System.out.println("""
-                -----------------------
-                Bem vindo! Selecione a moeda que você deseja converter,
-                você precisa inserir o valor númerico da opção de sua escolha:
+        MenuSelect first = new MenuSelect("""
                 
-                """);
-
-        int index = 1;
-        for (UserOptions.Currency item : selectedOptions.options) {
-            System.out.println(index + ") " + item.name);
-            index++;
-        }
-
-        System.out.println("-----------------------");
-        int firstSelected = askFor.nextInt() - 1;
-        selectedOptions.fromCurrency = selectedOptions.options.get(firstSelected);
-
-        // Segunda pergunta
-            // Remove a opcao selecionada anteriormente para não se repetir
-        selectedOptions.options.remove(firstSelected);
-
-        System.out.printf("""
-                -----------------------
-                Bacana! Agora escolha a moeda para qual deseja
-                converter o seu %s
+                =====================================================
+                                 Conversor de Moedas
+                =====================================================
                 
-                """, selectedOptions.fromCurrency.name);
+                Moeda de Origem:
+                """, currentConfig.options);
 
-        int indexDois = 1;
-        for (UserOptions.Currency item : selectedOptions.options) {
-            System.out.println(indexDois + ") " + item.name);
-            indexDois++;
-        }
-        System.out.println("-----------------------");
+        currentConfig.fromCurrency = currentConfig.options.get(first.selected);
 
-        selectedOptions.toCurrency = selectedOptions.options.get(askFor.nextInt() - 1);
 
-        System.out.println("Você está convertendendo " + selectedOptions.fromCurrency.name + " para " + selectedOptions.toCurrency.name);
+        // Remove a opcao selecionada anteriormente para não se repetir
+        currentConfig.options.remove(first.selected);
 
-        return selectedOptions;
+        MenuSelect secondary = new MenuSelect("""
+                
+                Moeda de Destino:
+                """, currentConfig.options);
+
+        currentConfig.toCurrency = currentConfig.options.get(secondary.selected);
+
+        // Inserindo valores de configuracao ao finalizar configuracao
+        config = currentConfig;
     }
 
-    public static double askAmount(String fromCurrencyName, String toCurrencyName) {
-        Scanner askFor = new Scanner(System.in);
+    private static void convertMessage() {
         System.out.printf("""
-                    Digite o valor em %s que você deseja converter para %s
-                    """, fromCurrencyName, toCurrencyName);
-
-        return askFor.nextDouble();
+       
+                    =====================================================
+                         Você está convertendo %s para %s
+                    =====================================================
+                    
+                    """, config.fromCurrency.name, config.toCurrency.name, config.fromCurrency.code, config.fromCurrency.name);
     }
 }
