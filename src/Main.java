@@ -98,6 +98,6 @@ public class Main {
                          Você está convertendo %s para %s
                     =====================================================
                     
-                    """, config.fromCurrency.name, config.toCurrency.name, config.fromCurrency.code, config.fromCurrency.name);
+                    """, config.fromCurrency.name, config.toCurrency.name);
     }
 }
